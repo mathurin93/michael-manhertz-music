@@ -80,17 +80,16 @@ const App = () => {
         </div>
       )}
 
-      {}
       {/* Hero Section */}
-      <section className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden">
+      <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden">
         {/* Background Local Video & Overlay */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
           <video 
             autoPlay 
             muted 
             loop 
             playsInline
-            className="absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-90"
+            className="w-full h-full object-cover object-center opacity-90"
           >
             <source src="./hero-bg.mp4" type="video/mp4" />
           </video>

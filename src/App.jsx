@@ -36,7 +36,7 @@ const App = () => {
       
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 a flex justify-between items-center">
           {/* Logo */}
           <div className="flex-1 flex items-center">
             <a href="#" className="flex items-center">
@@ -98,20 +98,13 @@ const App = () => {
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505]"></div>
 
-        {/* Big Typography */}
-        <div className="relative z-10 flex flex-col items-center mt-20">
-          <div className="relative">
-            <h1 className="text-6xl md:text-[9rem] leading-none font-black text-white tracking-tighter uppercase text-center relative z-20 px-4">
-              Michael
-            </h1>
-            {/* Glassmorphism box overlapping text */}
-            <div className="absolute -inset-2 md:-inset-4 bg-white/5 backdrop-blur-sm border border-white/10 z-10 hidden md:block"></div>
-            <h1 className="text-6xl md:text-[9rem] leading-none font-black text-transparent bg-clip-text bg-white/20 tracking-tighter uppercase text-center -mt-2 md:-mt-8 relative z-0 px-4">
-              Manhertz
-            </h1>
-          </div>
+        {/* Clean Typography */}
+        <div className="relative z-10 flex flex-col items-center mt-20 px-4">
+          {/* <h1 className="text-6xl md:text-[8rem] lg:text-[10rem] leading-none font-black text-white tracking-tighter uppercase text-center drop-shadow-2xl">
+            Michael<br />Manhertz
+          </h1> */}
           
-          <p className="mt-8 text-sm md:text-base tracking-[0.3em] uppercase text-gray-400 text-center max-w-lg px-4">
+          <p className="mt-8 text-sm md:text-base tracking-[0.3em] uppercase text-gray-200 text-center max-w-lg drop-shadow-lg">
             Worship Leader • Songwriter • Artist
           </p>
 
@@ -120,7 +113,7 @@ const App = () => {
               <span>View Tour Dates</span>
               <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a> */}
-            <button className="flex items-center space-x-3 border border-white/30 px-8 py-4 rounded-full font-bold uppercase tracking-wider hover:bg-white/10 transition-all">
+            <button className="flex items-center space-x-3 border border-white/30 bg-black/20 backdrop-blur-sm px-8 py-4 rounded-full font-bold uppercase tracking-wider hover:bg-white/10 transition-all">
               <span>Booking</span>
               <ArrowUpRight size={20} />
             </button>

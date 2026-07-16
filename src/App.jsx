@@ -157,7 +157,7 @@ const App = () => {
           <div className="lg:col-span-5 relative group">
             <div className="absolute -inset-4 border border-[#d1b06b]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <div className="relative aspect-square bg-[#151413] border border-white/10 flex flex-col justify-center items-center p-8 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?auto=format&fit=crop&q=80&w=800" alt="Single Artwork" className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" />
+              <img src="./single artwork.jpeg" alt="Single Artwork" className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" />
               <div className="relative z-10 text-center">
                 <p className="text-[10px] font-sans tracking-[0.4em] uppercase mb-4 text-[#d1b06b]">Michael Manhertz</p>
                 <h3 className="text-6xl md:text-7xl font-serif italic text-white drop-shadow-lg">Surrender</h3>

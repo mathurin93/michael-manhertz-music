@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Play, ArrowUpRight, Music, MapPin, Calendar, Award, Newspaper, Disc } from 'lucide-react';
+import { Menu, X, Play, ArrowUpRight, Music, MapPin, Calendar, Award, Newspaper, Disc, Mic2, Users, BookOpen } from "lucide-react";
 
 const App = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeMusicTab, setActiveMusicTab] = useState('discography');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,64 +14,83 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // REAL DATA FROM DOCX
   const tourDates = [
-    { id: 1, city: "Toronto", event: "Worship Clinic", date: "July 18, 2026" },
-    { id: 2, city: "Scarborough", event: "Live Worship", date: "September 5, 2026" },
-    { id: 3, city: "Brampton", event: "Praise Night", date: "September 26, 2026" },
+    { id: 1, city: "Toronto, ON", venue: "Worship Clinic", date: "July 18, 2026", time: "TBA" },
+    { id: 2, city: "Scarborough, ON", venue: "Live Event", date: "September 5, 2026", time: "TBA" },
+    { id: 3, city: "Brampton, ON", venue: "Live Worship", date: "September 26, 2026", time: "TBA" },
   ];
 
   const discography = [
-    { id: 1, title: "Surrender", year: "2026", type: "Single" },
-    { id: 2, title: "Able", year: "2025", type: "Single" },
-    { id: 3, title: "Wanna Be Happy?", year: "2024", type: "Album" },
-    { id: 4, title: "I Smile", year: "2022", type: "EP" },
+    { id: 1, year: "2025", title: "Solid Rock Medley (feat. Kimberly Adé)", type: "Single • Winner: 2026 Canadian Gospel Song of the Year" },
+    { id: 2, year: "2022", title: "The Unashamed Project", type: "13-Track Live Album" },
+    { id: 3, year: "2022", title: "Bless The Lord (feat. Vanessa Brown)", type: "Single / Live Worship" },
+    { id: 4, year: "2021", title: "Deeper (feat. Joshua Ali & Ruth Dente)", type: "Single" },
+    { id: 5, year: "2020", title: "Holy (feat. Daniel Ojo)", type: "Single" },
+    { id: 6, year: "2020", title: "Take It All", type: "Single" },
   ];
 
-  const features = [
-    { id: 1, title: "Promises", artist: "Maverick City Music", year: "2025" },
-    { id: 2, title: "Jireh", artist: "Elevation Worship", year: "2024" },
-    { id: 3, title: "Wait On You", artist: "Chandler Moore", year: "2023" },
+  const collaborations = [
+    { id: 1, year: "2024", title: "Ready to Receive", artist: "Morrissa Nicole", note: "Featured Vocalist (2025 CSMA Collab of the Year)" },
+    { id: 2, year: "2024", title: "Release Your Power", artist: "Roxanne Robinson", note: "Featured Vocalist" },
+    { id: 3, year: "2024", title: "Morning Time", artist: "I.O.Music", note: "Featured Vocalist" },
+    { id: 4, year: "2024", title: "Awesome God (Live)", artist: "Kevin Adams & Voices of Praise", note: "Featured Vocalist" },
+    { id: 5, year: "2023", title: "Just Enough", artist: "Kevin Adams & Voices of Praise", note: "Featured Vocalist" },
+    { id: 6, year: "2022", title: "Jehovah", artist: "Daniel Ojo", note: "Featured Vocalist" },
+    { id: 7, year: "2021", title: "Jesus", artist: "Kimberly Adé", note: "Featured Vocalist (Covenant Nominee)" },
+  ];
+
+  const awards = [
+    { id: 1, year: "2026", org: "CSMA", title: "Canadian Gospel Song of the Year", project: "Solid Rock Medley", status: "WINNER" },
+    { id: 2, year: "2026", org: "CSMA", title: "6x Nominee including Male & Gospel Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
+    { id: 3, year: "2025", org: "CSMA", title: "Collaboration Song of the Year", project: "Ready to Receive", status: "WINNER" },
+    { id: 4, year: "2023", org: "Covenant", title: "Gospel Artist & Song of the Year", project: "Michael Manhertz / Fresh Anointing", status: "Nominee" },
+    { id: 5, year: "2022", org: "Covenant", title: "Musical Collaboration of the Year", project: "Jesus (with Kimberly Adé)", status: "Nominee" },
   ];
 
   const news = [
-    { id: 1, date: "June 2026", title: "Headlining the Toronto Worship Clinic this Summer", category: "Live Event" },
-    { id: 2, date: "May 2026", title: "New Single 'Surrender' Tops Gospel Charts", category: "Release" },
-    { id: 3, date: "Feb 2026", title: "Featured on Maverick City Music's Upcoming Album", category: "Collaboration" },
+    { id: 1, date: "Oct 5, 2025", publication: "Jamaica Observer", title: "Michael Manhertz delivers Solid Rock Medley" },
+    { id: 2, date: "Oct 7, 2025", publication: "Jamaica Star", title: "Michael Manhertz honours late father with soul-stirring medley" },
+    { id: 3, date: "Sep 3, 2024", publication: "Never for Nothing", title: "Fresh Anointing / Bless the Lord Review (9/10)" },
+    { id: 4, date: "2024", publication: "CCM Magazine", title: "Morrissa Nicole Celebrates Unity With New Single" },
   ];
 
   return (
-    <div className="bg-[#0a0908] text-white min-h-screen font-serif selection:bg-[#d1b06b] selection:text-black">
+    <div className="bg-[#0a0908] text-[#f4f1eb] min-h-screen font-sans selection:bg-[#d1b06b] selection:text-black">
       
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 border-b border-white/5 ${isScrolled ? 'bg-[#0a0908]/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
-        <div className="max-w-[90rem] mx-auto px-6 md:px-12 flex justify-between items-center">
-          
-          {/* Desktop Left Links */}
-          <div className="hidden lg:flex flex-1 items-center space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 font-sans">
-            <a href="#music" className="hover:text-[#d1b06b] transition-colors">Music</a>
-            <a href="#story" className="hover:text-[#d1b06b] transition-colors">Story</a>
-            <a href="#gallery" className="hover:text-[#d1b06b] transition-colors">Gallery</a>
-            <a href="#tour" className="hover:text-[#d1b06b] transition-colors">Tour</a>
-          </div>
-
-          {/* Logo Center */}
-          <div className="flex-1 flex justify-start lg:justify-center">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          {/* Logo (Using mix-blend-screen to remove black JPEG background) */}
+          <div className="flex-1 flex items-center">
             <a href="#" className="flex items-center">
-              <img src="./logo.jpeg" alt="Michael Manhertz Logo" className="h-10 md:h-14 w-auto mix-blend-screen" />
+              <img 
+                src="./logo.jpeg" 
+                alt="Michael Manhertz Music Logo" 
+                className="h-12 md:h-16 w-auto object-contain mix-blend-screen opacity-90 hover:opacity-100 transition-opacity" 
+              />
             </a>
           </div>
 
-          {/* Desktop Right Links */}
-          <div className="hidden lg:flex flex-1 justify-end items-center space-x-8 text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 font-sans">
-            <a href="#news" className="hover:text-[#d1b06b] transition-colors">News</a>
-            <a href="#awards" className="hover:text-[#d1b06b] transition-colors">Awards</a>
-            <button className="bg-[#d1b06b] text-black px-6 py-3 hover:bg-white transition-colors">
-              Booking
+          {/* Desktop Links */}
+          <div className="hidden md:flex flex-1 justify-center space-x-10 text-xs font-semibold tracking-[0.2em] uppercase text-[#a39b8b]">
+            <a href="#music" className="hover:text-[#d1b06b] transition-colors">Music</a>
+            <a href="#story" className="hover:text-[#d1b06b] transition-colors">Story</a>
+            <a href="#tour" className="hover:text-[#d1b06b] transition-colors">Tour</a>
+            <a href="#coaching" className="hover:text-[#d1b06b] transition-colors">Coaching</a>
+          </div>
+
+          {/* Right Actions */}
+          <div className="hidden md:flex flex-1 justify-end items-center space-x-8">
+            <a href="#news" className="text-xs font-semibold tracking-[0.2em] uppercase text-[#a39b8b] hover:text-[#d1b06b] transition-colors">News</a>
+            <a href="https://pluggedinapparel.ca/" target="_blank" rel="noreferrer" className="text-xs font-semibold tracking-[0.2em] uppercase text-[#a39b8b] hover:text-[#d1b06b] transition-colors">Merch</a>
+            <button className="bg-[#d1b06b] text-[#0a0908] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors">
+              Book Michael
             </button>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="lg:hidden flex justify-end flex-1">
+          <div className="md:hidden flex justify-end flex-1">
             <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[#d1b06b]">
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -80,333 +100,345 @@ const App = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#0a0908] z-40 flex flex-col justify-center items-center space-y-8 text-xl font-serif uppercase tracking-widest border-t border-[#d1b06b]/20 mt-20">
-          <a href="#music" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d1b06b]">Music</a>
-          <a href="#gallery" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d1b06b]">Gallery</a>
-          <a href="#tour" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d1b06b]">Tour</a>
-          <a href="#news" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#d1b06b]">News</a>
-          <button className="mt-8 border border-[#d1b06b] text-[#d1b06b] px-12 py-4 text-sm font-sans tracking-[0.2em]">
-            Booking
-          </button>
+        <div className="fixed inset-0 bg-[#0a0908] z-40 flex flex-col justify-center items-center space-y-8 text-xl font-serif tracking-widest text-[#d1b06b]">
+          <a href="#music" onClick={() => setIsMobileMenuOpen(false)}>Music</a>
+          <a href="#story" onClick={() => setIsMobileMenuOpen(false)}>Story</a>
+          <a href="#tour" onClick={() => setIsMobileMenuOpen(false)}>Tour Dates</a>
+          <a href="#coaching" onClick={() => setIsMobileMenuOpen(false)}>Coaching</a>
+          <a href="https://pluggedinapparel.ca/" target="_blank" rel="noreferrer" onClick={() => setIsMobileMenuOpen(false)}>Shop Merch</a>
         </div>
       )}
 
-      {/* Hero Section */}
-      <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-[#0a0908]">
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+      {/* Editorial Hero Section */}
+      <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-black">
+        {/* Editorial Background Image */}
+        <div className="absolute inset-0 w-full h-full">
           <img 
             src="./hero.jpeg" 
-            alt="Michael Manhertz" 
-            className="absolute top-0 left-0 w-full h-full object-cover object-top opacity-70"
+            alt="Michael Manhertz Live" 
+            className="w-full h-full object-cover object-center opacity-70"
           />
         </div>
         
-        {/* Editorial Vignette Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0908] via-transparent to-[#0a0908]/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0908]/50 via-transparent to-[#0a0908]/50"></div>
+        {/* Vignette & Gradients for readability */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0908_100%)] opacity-80 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908]/40 via-transparent to-[#0a0908] pointer-events-none"></div>
 
-        <div className="relative z-10 flex flex-col items-center mt-32 w-full px-4">
-          {/* Main Editorial Typography */}
-          <h1 className="text-6xl sm:text-8xl md:text-[11rem] leading-[0.85] font-serif text-white tracking-tighter uppercase text-center drop-shadow-2xl mix-blend-overlay opacity-90">
-            Michael<br />Manhertz
-          </h1>
-          <h1 className="absolute top-0 text-6xl sm:text-8xl md:text-[11rem] leading-[0.85] font-serif text-transparent tracking-tighter uppercase text-center" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.8)'}}>
-            Michael<br />Manhertz
-          </h1>
-        </div>
-
-        {/* Floating Top Left Badge */}
-        <div className="absolute top-32 left-6 md:left-12 z-20 flex items-center space-x-3 text-[10px] md:text-xs font-sans tracking-[0.3em] uppercase text-[#d1b06b]">
-          <span className="w-1.5 h-1.5 bg-[#d1b06b] rounded-full"></span>
-          <span>New Single "Surrender" • Out Now</span>
-        </div>
-
-        {/* Floating Bottom Stats */}
-        <div className="absolute bottom-12 left-6 md:left-12 z-20 flex space-x-12 hidden md:flex">
-          <div>
-            <p className="text-[10px] font-sans tracking-[0.2em] uppercase text-gray-400 mb-1">Gospel Awards</p>
-            <p className="text-4xl font-serif text-[#d1b06b]">3<span className="text-xl align-top">+</span></p>
+        {/* Floating Marquee Top */}
+        <div className="absolute top-32 left-0 w-full overflow-hidden flex whitespace-nowrap opacity-60 pointer-events-none">
+          <div className="animate-marquee flex space-x-12 text-[#d1b06b] text-xs font-semibold tracking-[0.3em] uppercase">
+            <span>Winner • 2026 Canadian Gospel Song of the Year</span>
+            <span>•</span>
+            <span>GMA Canada Covenant Award Nominee</span>
+            <span>•</span>
+            <span>Winner • 2026 Canadian Gospel Song of the Year</span>
+            <span>•</span>
+            <span>GMA Canada Covenant Award Nominee</span>
           </div>
+        </div>
+
+        {/* Big Typography Cleaned Up */}
+        <div className="relative z-10 flex flex-col items-center mt-20 px-4">
+          <h1 className="text-6xl md:text-[9rem] leading-[0.85] font-serif text-[#f4f1eb] tracking-tighter text-center drop-shadow-2xl">
+            MICHAEL<br/>MANHERTZ
+          </h1>
+          
+          <p className="mt-8 text-xs md:text-sm tracking-[0.3em] uppercase text-[#d1b06b] text-center max-w-2xl px-4 font-semibold">
+            Worship that carries testimony, culture and conviction.
+          </p>
+
+          <div className="mt-12 flex items-center">
+            <a href="mailto:bookings@michaelmanhertzmusic.com" className="flex items-center space-x-3 border border-[#d1b06b]/50 text-[#d1b06b] px-10 py-4 font-semibold uppercase tracking-[0.2em] text-xs hover:bg-[#d1b06b] hover:text-[#0a0908] transition-all bg-[#0a0908]/40 backdrop-blur-sm">
+              <span>Book For Ministry</span>
+              <ArrowUpRight size={16} />
+            </a>
+          </div>
+        </div>
+
+        {/* Stats / Credibility strip at bottom */}
+        <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 flex justify-between items-end z-20 hidden md:flex">
           <div>
-            <p className="text-[10px] font-sans tracking-[0.2em] uppercase text-gray-400 mb-1">Est.</p>
-            <p className="text-4xl font-serif text-[#d1b06b]">2015</p>
+            <p className="text-[10px] tracking-[0.2em] text-[#a39b8b] uppercase mb-1">Latest Honour</p>
+            <p className="text-4xl font-serif text-[#d1b06b]">CSMA<sup className="text-xl"> '26</sup></p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] tracking-[0.2em] text-[#a39b8b] uppercase mb-1">Spotify Streams</p>
+            <p className="text-4xl font-serif text-[#d1b06b]">215K<sup className="text-xl">+</sup></p>
           </div>
         </div>
       </section>
 
-      {/* Marquee Banner */}
-      <div className="w-full border-y border-[#d1b06b]/20 bg-[#0d0c0b] py-4 overflow-hidden flex whitespace-nowrap">
-        <div className="animate-[marquee_20s_linear_infinite] flex items-center space-x-8 text-[#d1b06b] font-serif text-xl md:text-2xl italic">
-          <span>•</span><span>Surrender</span><span>•</span><span>Able</span><span>•</span><span>I Smile</span><span>•</span><span>Wanna Be Happy?</span>
-          <span>•</span><span>Surrender</span><span>•</span><span>Able</span><span>•</span><span>I Smile</span><span>•</span><span>Wanna Be Happy?</span>
-          <span>•</span><span>Surrender</span><span>•</span><span>Able</span><span>•</span><span>I Smile</span><span>•</span><span>Wanna Be Happy?</span>
+      {/* Marquee Scroller */}
+      <div className="border-y border-white/5 py-4 bg-[#0d0c0a] overflow-hidden flex whitespace-nowrap relative">
+        <div className="animate-marquee flex space-x-12 items-center text-[#f4f1eb] font-serif text-2xl md:text-3xl italic opacity-80">
+          <span>Solid Rock Medley</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          <span>The Unashamed Project</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          <span>Fresh Anointing</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          <span>Holy</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          <span>Deeper</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          <span>Take It All</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
         </div>
       </div>
 
-      {/* Latest Single / Editorial Layout */}
-      <section id="story" className="py-24 md:py-32 max-w-[90rem] mx-auto px-6 md:px-12">
-        <div className="flex items-center text-[10px] font-sans tracking-[0.3em] uppercase text-gray-500 mb-16">
-          <span className="w-12 h-px bg-[#d1b06b]/50 mr-4"></span>
-          The Single
-          <span className="ml-auto">Out Now - All Platforms</span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
-          {/* Left Column - Faux Album Art */}
+      {/* Story / Latest Single Section (Editorial Layout) */}
+      <section id="story" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          {/* Left: Album Art */}
           <div className="lg:col-span-5 relative group">
-            <div className="absolute -inset-4 border border-[#d1b06b]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <div className="relative aspect-square bg-[#151413] border border-white/10 flex flex-col justify-center items-center p-8 overflow-hidden">
-              <img src="./single artwork.jpeg" alt="Single Artwork" className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700" />
-              <div className="relative z-10 text-center">
-                <p className="text-[10px] font-sans tracking-[0.4em] uppercase mb-4 text-[#d1b06b]">Michael Manhertz</p>
-                <h3 className="text-6xl md:text-7xl font-serif italic text-white drop-shadow-lg">Surrender</h3>
-              </div>
+            <div className="absolute -inset-4 bg-[#d1b06b]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="relative aspect-square overflow-hidden border border-white/10 shadow-2xl">
+              <img 
+                src="./single artwork.jpeg" 
+                alt="Solid Rock Medley Artwork" 
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 hover:scale-100"
+              />
             </div>
+            <p className="mt-4 text-[10px] text-[#a39b8b] uppercase tracking-[0.2em] font-serif italic">
+              Released 2025 / Produced by Dylan Smith
+            </p>
           </div>
-
-          {/* Right Column - Typography */}
-          <div className="lg:col-span-7 lg:pl-12">
-            <p className="text-[#d1b06b] text-[10px] font-bold font-sans tracking-[0.3em] uppercase mb-6">The Story</p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-tighter leading-[1.1] mb-8 uppercase text-white/90">
-              He is <span className="text-[#d1b06b] italic lowercase">able</span> to heal every breaking thing.
+          
+          {/* Right: The Story */}
+          <div className="lg:col-span-7">
+            <p className="text-[#d1b06b] text-xs font-bold tracking-[0.2em] uppercase mb-6 flex items-center">
+              <span className="w-8 h-[1px] bg-[#d1b06b] mr-4"></span>
+              CSMA Song of the Year
+            </p>
+            <h2 className="text-5xl md:text-7xl font-serif leading-[0.9] tracking-tight mb-8">
+              SOLID ROCK<br/><i className="text-[#a39b8b]">MEDLEY</i>
             </h2>
-            <div className="flex items-start space-x-4 mb-12">
-              <span className="text-6xl font-serif text-[#d1b06b] leading-none">M</span>
-              <p className="text-gray-400 font-sans leading-relaxed text-sm md:text-base pt-2">
-                ichael on the song: "Sometimes we get so caught up in what we're waiting on, that we forget to thank Him for what He's already done. This song is a reminder that He's still providing, still healing, still making a way, no matter what it looks like."
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {['Apple Music', 'Spotify', 'Tidal', 'All Platforms'].map((platform, idx) => (
-                <button key={platform} className={`py-4 text-[10px] font-sans font-bold tracking-[0.2em] uppercase transition-colors ${idx === 3 ? 'bg-[#d1b06b] text-black hover:bg-white' : 'border border-white/10 text-gray-400 hover:text-white hover:border-white/30'}`}>
-                  {platform}
-                </button>
-              ))}
+            <p className="text-lg md:text-xl text-[#f4f1eb] font-serif leading-relaxed mb-6 italic opacity-90">
+              "A joyful, Caribbean-rooted Sunday-morning medley created in honour of Michael’s late father and the church songs that formed his faith."
+            </p>
+            <p className="text-sm text-[#a39b8b] leading-loose mb-10 max-w-2xl">
+              Michael Manhertz is an award-winning Toronto gospel artist, worship leader, and artist-development coach. Raised in a Jamaican-Canadian environment, his sound blends Caribbean gospel, contemporary Christian music, and traditional Black gospel. His recording brings together traditional hymns and contemporary energy while declaring that Jesus remains the believer’s sure foundation.
+            </p>
+            
+            <div className="flex flex-wrap gap-4">
+              <button className="flex items-center space-x-2 bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors">
+                <Music size={16} />
+                <span>Listen Everywhere</span>
+              </button>
+              <button className="flex items-center space-x-2 border border-white/20 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:border-[#d1b06b] hover:text-[#d1b06b] transition-colors">
+                <Play size={16} />
+                <span>Watch Video</span>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Dates Section */}
-      <section id="tour" className="py-24 bg-[#0d0c0b] border-t border-white/5">
-        <div className="max-w-[60rem] mx-auto px-6 md:px-12 text-center">
-          <p className="text-[#d1b06b] text-[10px] font-bold font-sans tracking-[0.3em] uppercase mb-4">• Live In Concert •</p>
-          <h2 className="text-4xl md:text-6xl font-serif tracking-tighter uppercase mb-16 text-white/90">Upcoming <span className="text-[#d1b06b] italic lowercase">Dates</span></h2>
-          
-          <div className="space-y-0">
+      {/* Tour Section */}
+      <section id="tour" className="py-24 bg-[#0d0c0a] border-y border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-2">LIVE <i className="text-[#d1b06b]">&</i> MINISTRY</h2>
+              <p className="text-sm text-[#a39b8b] uppercase tracking-[0.2em]">Upcoming Dates & Appearances</p>
+            </div>
+            <a href="mailto:bookings@michaelmanhertzmusic.com" className="text-xs font-bold text-[#d1b06b] uppercase tracking-[0.2em] border-b border-[#d1b06b] pb-1 hover:text-[#ebd5a6] transition-colors">
+              Invite Michael →
+            </a>
+          </div>
+
+          <div className="space-y-2">
             {tourDates.map((tour) => (
-              <div key={tour.id} className="flex flex-col md:flex-row justify-between items-center py-8 border-b border-white/10 group hover:bg-white/5 transition-colors px-4 cursor-pointer">
-                <div className="text-center md:text-left mb-4 md:mb-0">
-                  <p className="text-[#d1b06b] font-serif text-lg md:text-xl italic">{tour.date}</p>
+              <div key={tour.id} className="group border-b border-white/10 hover:border-[#d1b06b]/50 transition-colors py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 cursor-pointer">
+                <div className="flex-1">
+                  <p className="text-[#d1b06b] text-sm font-semibold tracking-[0.2em] uppercase mb-2">{tour.date}</p>
+                  <h3 className="text-2xl font-serif text-[#f4f1eb] group-hover:text-[#d1b06b] transition-colors">{tour.city}</h3>
                 </div>
-                <div className="text-center mb-4 md:mb-0">
-                  <h3 className="text-2xl md:text-3xl font-serif uppercase tracking-tight">{tour.event}</h3>
-                </div>
-                <div className="text-center md:text-right flex items-center space-x-6">
-                  <span className="text-gray-400 font-sans tracking-[0.2em] uppercase text-sm">{tour.city}</span>
-                  <ArrowUpRight className="text-gray-600 group-hover:text-[#d1b06b] transition-colors hidden md:block" />
+                <div className="flex-1 text-left md:text-right">
+                  <p className="text-sm text-[#a39b8b] uppercase tracking-widest">{tour.venue}</p>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Discography & Collaborations */}
+      <section id="music" className="py-24 px-6 max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-8">THE <i className="text-[#d1b06b]">CATALOGUE</i></h2>
           
-          <div className="mt-16">
-            <button className="bg-transparent border border-[#d1b06b] text-[#d1b06b] px-12 py-4 font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#d1b06b] hover:text-black transition-colors">
-              Book Michael
+          {/* Custom Tabs */}
+          <div className="flex justify-center space-x-8 text-xs font-bold uppercase tracking-[0.2em]">
+            <button 
+              onClick={() => setActiveMusicTab('discography')}
+              className={`pb-2 transition-colors ${activeMusicTab === 'discography' ? 'text-[#d1b06b] border-b border-[#d1b06b]' : 'text-[#a39b8b] hover:text-white'}`}
+            >
+              Discography
+            </button>
+            <button 
+              onClick={() => setActiveMusicTab('collabs')}
+              className={`pb-2 transition-colors ${activeMusicTab === 'collabs' ? 'text-[#d1b06b] border-b border-[#d1b06b]' : 'text-[#a39b8b] hover:text-white'}`}
+            >
+              Collaborations
             </button>
           </div>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+          {activeMusicTab === 'discography' && discography.map((item) => (
+            <div key={item.id} className="flex gap-6 items-center group">
+              <div className="w-16 h-16 bg-[#161412] border border-white/5 flex flex-col items-center justify-center text-[#d1b06b] shrink-0">
+                <Disc size={20} className="mb-1 opacity-50" />
+                <span className="text-[10px] tracking-widest font-bold">{item.year}</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-serif mb-1 group-hover:text-[#d1b06b] transition-colors">{item.title}</h3>
+                <p className="text-xs text-[#a39b8b] uppercase tracking-widest">{item.type}</p>
+              </div>
+            </div>
+          ))}
+
+          {activeMusicTab === 'collabs' && collaborations.map((item) => (
+            <div key={item.id} className="flex gap-6 items-center group">
+              <div className="w-16 h-16 bg-[#161412] border border-white/5 flex flex-col items-center justify-center text-[#a39b8b] shrink-0">
+                <Mic2 size={20} className="mb-1 opacity-50" />
+                <span className="text-[10px] tracking-widest font-bold">{item.year}</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-serif mb-1 group-hover:text-[#d1b06b] transition-colors">{item.title}</h3>
+                <p className="text-xs text-[#a39b8b] uppercase tracking-widest">{item.artist} • <span className="text-[#d1b06b]/80">{item.note}</span></p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* Discography Section */}
-      <section className="py-32 px-6 md:px-12 max-w-[90rem] mx-auto border-t border-white/5">
-        <h2 className="text-5xl md:text-7xl font-serif tracking-tighter uppercase mb-16 text-center">The <span className="text-[#d1b06b] italic lowercase">Catalog</span></h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left: Solo Discography */}
-          <div>
-            <h3 className="text-[#d1b06b] text-[12px] font-bold font-sans tracking-[0.3em] uppercase mb-8 border-b border-white/10 pb-4 flex items-center gap-3">
-              <Disc size={16} /> Solo Discography
-            </h3>
-            <div className="space-y-6">
-              {discography.map((item) => (
-                <div key={item.id} className="flex justify-between items-end border-b border-white/5 pb-4 hover:border-[#d1b06b]/30 transition-colors cursor-pointer">
-                  <div>
-                    <h4 className="text-xl md:text-2xl font-serif">{item.title}</h4>
-                    <p className="text-gray-500 font-sans text-[10px] uppercase tracking-widest mt-1">{item.type}</p>
-                  </div>
-                  <span className="text-[#d1b06b] font-serif">{item.year}</span>
-                </div>
-              ))}
+      {/* Editorial Photo Gallery (4 Images Asymmetric layout) */}
+      <section className="py-24 bg-[#0d0c0a] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[250px] md:auto-rows-[350px]">
+            {/* Image 1: Landscape (Wide) */}
+            <div className="md:col-span-8 overflow-hidden group">
+              <img src="./landscape-1.jpeg" alt="Michael Manhertz Performance" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
             </div>
-          </div>
-
-          {/* Right: Features */}
-          <div>
-            <h3 className="text-[#d1b06b] text-[12px] font-bold font-sans tracking-[0.3em] uppercase mb-8 border-b border-white/10 pb-4 flex items-center gap-3">
-              <Music size={16} /> Featured Collaborations
-            </h3>
-            <div className="space-y-6">
-              {features.map((item) => (
-                <div key={item.id} className="flex flex-col border-b border-white/5 pb-4 hover:border-[#d1b06b]/30 transition-colors cursor-pointer">
-                  <div className="flex justify-between items-end">
-                    <h4 className="text-xl md:text-2xl font-serif text-white">{item.title}</h4>
-                    <span className="text-[#d1b06b] font-serif">{item.year}</span>
-                  </div>
-                  <p className="text-gray-400 font-sans text-sm mt-2">{item.artist}</p>
-                </div>
-              ))}
+            {/* Image 2: Long (Tall portrait) */}
+            <div className="md:col-span-4 md:row-span-2 overflow-hidden group">
+              <img src="./long-1.jpeg" alt="Michael Manhertz Portrait" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
+            </div>
+            {/* Image 3: Long (Tall portrait on left for row 2) */}
+            <div className="md:col-span-4 overflow-hidden group hidden md:block">
+              <img src="./long-2.jpeg" alt="Michael Manhertz Studio" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 object-top transition-all duration-700" />
+            </div>
+            {/* Image 4: Landscape (Wide bottom right) */}
+            <div className="md:col-span-4 overflow-hidden group hidden md:block">
+              <img src="./landscape-2.jpeg" alt="Michael Manhertz Ministry" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section id="gallery" className="py-24 border-t border-white/5 bg-[#0d0c0b]">
-        <div className="max-w-[90rem] mx-auto px-6 md:px-12">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-serif tracking-tighter uppercase mb-4">
-              Visual <span className="text-[#d1b06b] italic lowercase">Moments</span>
+      {/* Coaching & Artist Development */}
+      <section id="coaching" className="py-24 px-6 max-w-5xl mx-auto text-center border-b border-white/5">
+        <BookOpen size={40} className="mx-auto text-[#d1b06b] mb-8" />
+        <h2 className="text-[#d1b06b] text-xs font-bold tracking-[0.2em] uppercase mb-4">Christian Music Mentor</h2>
+        <h3 className="text-4xl md:text-5xl font-serif tracking-tight mb-6">Build the voice, strategy and support system behind your calling.</h3>
+        <p className="text-[#a39b8b] text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-10">
+          Michael Manhertz serves as an artist-development coach, helping Christian artists, worship leaders, and creative teams move from uncertainty to a clear and sustainable plan. Gain practical guidance in vocal development, performance, release strategy, and team building.
+        </p>
+        <button className="border border-[#d1b06b] text-[#d1b06b] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#d1b06b] hover:text-[#0a0908] transition-colors">
+          Book A Coaching Call
+        </button>
+      </section>
+
+      {/* Awards & Press */}
+      <section id="news" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+          
+          {/* Awards */}
+          <div>
+            <h2 className="text-3xl font-serif mb-10 flex items-center">
+              <Award size={24} className="mr-4 text-[#d1b06b]" />
+              HONOURS <i className="text-[#a39b8b] ml-2">& AWARDS</i>
             </h2>
-            <p className="text-[#d1b06b] text-[10px] font-bold font-sans tracking-[0.3em] uppercase">• Live & Editorial •</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-            {/* Column 1 */}
-            <div className="flex flex-col gap-8 md:gap-16">
-              <div className="relative group overflow-hidden border border-white/10 p-2 bg-[#151413]">
-                <img 
-                  src="./landscape-1.jpeg" 
-                  alt="Gallery Landscape 1" 
-                  className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                />
-              </div>
-              <div className="relative group overflow-hidden border border-white/10 p-2 md:w-3/4 md:ml-auto bg-[#151413]">
-                <img 
-                  src="./long-1.jpeg" 
-                  alt="Gallery Portrait 1" 
-                  className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                />
-              </div>
-            </div>
-            
-            {/* Column 2 - Offset visually on desktop */}
-            <div className="flex flex-col gap-8 md:gap-16 md:pt-32">
-              <div className="relative group overflow-hidden border border-white/10 p-2 md:w-3/4 bg-[#151413]">
-                <img 
-                  src="./long-2.jpeg" 
-                  alt="Gallery Portrait 2" 
-                  className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                />
-              </div>
-              <div className="relative group overflow-hidden border border-white/10 p-2 bg-[#151413]">
-                <img 
-                  src="./landscape-2.jpeg" 
-                  alt="Gallery Landscape 2" 
-                  className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* News & Awards Section */}
-      <section id="awards" className="py-24 bg-[#0a0908] border-t border-white/5">
-        <div className="max-w-[90rem] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20">
-          
-          {/* Left: Latest News */}
-          <div>
-            <div className="flex items-center space-x-4 mb-12 border-b border-white/10 pb-4">
-              <Newspaper className="text-[#d1b06b]" size={24} />
-              <h2 className="text-3xl md:text-4xl font-serif uppercase tracking-tight">Latest <span className="text-[#d1b06b] italic lowercase">News</span></h2>
-            </div>
-            
-            <div className="space-y-8">
-              {news.map((item) => (
-                <div key={item.id} className="group cursor-pointer">
-                  <div className="flex items-center space-x-4 mb-2">
-                    <span className="text-[#d1b06b] text-[10px] font-sans font-bold tracking-[0.2em] uppercase">{item.category}</span>
-                    <span className="w-8 h-px bg-white/20"></span>
-                    <span className="text-gray-500 font-sans text-[10px] uppercase tracking-wider">{item.date}</span>
-                  </div>
-                  <h3 className="text-xl font-serif text-white/90 group-hover:text-[#d1b06b] transition-colors leading-snug">
-                    {item.title}
-                  </h3>
+            <div className="space-y-6">
+              {awards.map((award) => (
+                <div key={award.id} className="border-l-2 border-[#d1b06b]/30 pl-6 pb-2">
+                  <p className="text-[#d1b06b] text-xs font-bold tracking-widest uppercase mb-1">{award.year} {award.org}</p>
+                  <h4 className="text-lg font-serif text-[#f4f1eb]">{award.title}</h4>
+                  <p className="text-[11px] text-[#a39b8b] tracking-wider uppercase mt-1">{award.project} • <span className={award.status === 'WINNER' ? 'text-white font-bold' : ''}>{award.status}</span></p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Awards */}
+          {/* Press/News */}
           <div>
-            <div className="flex items-center space-x-4 mb-12 border-b border-white/10 pb-4">
-              <Award className="text-[#d1b06b]" size={24} />
-              <h2 className="text-3xl md:text-4xl font-serif uppercase tracking-tight">Select <span className="text-[#d1b06b] italic lowercase">Honors</span></h2>
-            </div>
-
-            <div className="grid grid-cols-2 gap-8">
-              <div className="bg-[#0d0c0b] border border-white/5 p-8 text-center hover:border-[#d1b06b]/30 transition-colors">
-                <p className="text-[#d1b06b] text-5xl md:text-6xl font-serif mb-2">3<span className="text-xl align-top">+</span></p>
-                <p className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-gray-400">Gospel Music Awards</p>
-              </div>
-              <div className="bg-[#0d0c0b] border border-white/5 p-8 text-center hover:border-[#d1b06b]/30 transition-colors">
-                <p className="text-[#d1b06b] text-5xl md:text-6xl font-serif mb-2">1M<span className="text-xl align-top">+</span></p>
-                <p className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-gray-400">Streams Globally</p>
-              </div>
-              <div className="bg-[#0d0c0b] border border-white/5 p-8 text-center hover:border-[#d1b06b]/30 transition-colors">
-                <p className="text-[#d1b06b] text-5xl md:text-6xl font-serif mb-2">2</p>
-                <p className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-gray-400">Billboard Chart Entries</p>
-              </div>
-              <div className="bg-[#0d0c0b] border border-white/5 p-8 text-center hover:border-[#d1b06b]/30 transition-colors">
-                <p className="text-[#d1b06b] text-5xl md:text-6xl font-serif mb-2">#1</p>
-                <p className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-gray-400">Radio Single Add</p>
-              </div>
+            <h2 className="text-3xl font-serif mb-10 flex items-center">
+              <Newspaper size={24} className="mr-4 text-[#d1b06b]" />
+              PRESS <i className="text-[#a39b8b] ml-2">& MEDIA</i>
+            </h2>
+            <div className="space-y-6">
+              {news.map((item) => (
+                <div key={item.id} className="border-l-2 border-white/10 hover:border-[#d1b06b]/50 transition-colors pl-6 pb-2">
+                  <p className="text-[#a39b8b] text-[10px] font-bold tracking-widest uppercase mb-1">{item.date} • {item.publication}</p>
+                  <h4 className="text-base font-serif text-[#f4f1eb] leading-snug">{item.title}</h4>
+                </div>
+              ))}
             </div>
           </div>
+
         </div>
+      </section>
+
+      {/* Merch CTA */}
+      <section className="bg-[#d1b06b] text-[#0a0908] py-20 text-center px-6">
+        <h2 className="text-3xl md:text-5xl font-serif tracking-tight mb-4">Faith should be lived, spoken and worn.</h2>
+        <p className="text-sm font-semibold tracking-widest uppercase opacity-80 mb-8 max-w-2xl mx-auto">
+          Shop Plxgged In Apparel — modern Christian streetwear created to help believers carry conviction into everyday life.
+        </p>
+        <a href="https://pluggedinapparel.ca/" target="_blank" rel="noreferrer" className="inline-block bg-[#0a0908] text-[#d1b06b] px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#161412] transition-colors">
+          Shop Merch Store
+        </a>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#050404] py-16 border-t border-white/5">
-        <div className="max-w-[90rem] mx-auto px-6 md:px-12 flex flex-col items-center justify-center space-y-10 text-center">
-          
-          <img src="./logo.jpeg" alt="Michael Manhertz Logo" className="h-16 w-auto mix-blend-screen opacity-80" />
-          
-          {/* Custom SVGs for Social Icons */}
-          <div className="flex space-x-8">
-            <a href="#" className="text-gray-500 hover:text-[#d1b06b] transition-colors" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            <a href="#" className="text-gray-500 hover:text-[#d1b06b] transition-colors" aria-label="YouTube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-              </svg>
-            </a>
-            <a href="#" className="text-gray-500 hover:text-[#d1b06b] transition-colors" aria-label="Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </a>
+      <footer className="bg-[#050404] pt-24 pb-12 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div className="md:col-span-2">
+            <img src="./logo.jpeg" alt="Michael Manhertz Logo" className="h-16 w-auto object-contain mix-blend-screen opacity-50 mb-6" />
+            <p className="text-xs text-[#a39b8b] leading-loose max-w-sm">
+              Award-winning Toronto gospel artist, worship leader, vocal arranger and artist-development coach. Bridging Caribbean-rooted praise, contemporary worship and traditional Black gospel.
+            </p>
           </div>
-          
-          <div className="text-[9px] font-sans text-gray-600 uppercase tracking-[0.3em] flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-            <p>© 2026 Michael Manhertz Music</p>
-            <span className="hidden md:inline">•</span>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
+          <div>
+            <h4 className="text-[#d1b06b] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Contact & Booking</h4>
+            <ul className="space-y-4 text-xs text-[#a39b8b] tracking-wider">
+              <li><a href="mailto:bookings@michaelmanhertzmusic.com" className="hover:text-white transition-colors">bookings@michaelmanhertzmusic.com</a></li>
+              <li><a href="mailto:press@michaelmanhertzmusic.com" className="hover:text-white transition-colors">press@michaelmanhertzmusic.com</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-[#d1b06b] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Connect</h4>
+            <div className="flex space-x-6">
+              {/* Custom SVGs for Social Icons */}
+              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+              </a>
+              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
             </div>
           </div>
         </div>
+        
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-[10px] text-[#a39b8b] uppercase tracking-widest">
+          <p>© {new Date().getFullYear()} Michael Manhertz Music. All rights reserved.</p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="hover:text-white">Privacy</a>
+            <span>|</span>
+            <a href="#" className="hover:text-white">Terms</a>
+          </div>
+        </div>
       </footer>
+
     </div>
   );
 };

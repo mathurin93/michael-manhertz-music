@@ -14,7 +14,6 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // REAL DATA FROM DOCX
   const tourDates = [
     { id: 1, city: "Toronto, ON", venue: "Worship Clinic", date: "July 18, 2026", time: "TBA" },
     { id: 2, city: "Scarborough, ON", venue: "Live Event", date: "September 5, 2026", time: "TBA" },
@@ -31,21 +30,25 @@ const App = () => {
   ];
 
   const collaborations = [
-    { id: 1, year: "2024", title: "Ready to Receive", artist: "Morrissa Nicole", note: "Featured Vocalist (2025 CSMA Collab of the Year)" },
+    { id: 1, year: "2024", title: "Ready to Receive", artist: "Morrissa Nicole", note: "Featured Vocalist (2025 Canadian Selah Music Awards Collab of the Year)" },
     { id: 2, year: "2024", title: "Release Your Power", artist: "Roxanne Robinson", note: "Featured Vocalist" },
     { id: 3, year: "2024", title: "Morning Time", artist: "I.O.Music", note: "Featured Vocalist" },
     { id: 4, year: "2024", title: "Awesome God (Live)", artist: "Kevin Adams & Voices of Praise", note: "Featured Vocalist" },
     { id: 5, year: "2023", title: "Just Enough", artist: "Kevin Adams & Voices of Praise", note: "Featured Vocalist" },
     { id: 6, year: "2022", title: "Jehovah", artist: "Daniel Ojo", note: "Featured Vocalist" },
-    { id: 7, year: "2021", title: "Jesus", artist: "Kimberly Adé", note: "Featured Vocalist (Covenant Nominee)" },
+    { id: 7, year: "2021", title: "Jesus", artist: "Kimberly Adé", note: "Featured Vocalist (Covenant Awards Nominee)" },
   ];
 
   const awards = [
-    { id: 1, year: "2026", org: "CSMA", title: "Canadian Gospel Song of the Year", project: "Solid Rock Medley", status: "WINNER" },
-    { id: 2, year: "2026", org: "CSMA", title: "6x Nominee including Male & Gospel Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
-    { id: 3, year: "2025", org: "CSMA", title: "Collaboration Song of the Year", project: "Ready to Receive", status: "WINNER" },
-    { id: 4, year: "2023", org: "Covenant", title: "Gospel Artist & Song of the Year", project: "Michael Manhertz / Fresh Anointing", status: "Nominee" },
-    { id: 5, year: "2022", org: "Covenant", title: "Musical Collaboration of the Year", project: "Jesus (with Kimberly Adé)", status: "Nominee" },
+    { id: 1, year: "2026", org: "Canadian Selah Music Awards", title: "Canadian Gospel Song of the Year", project: "Solid Rock Medley", status: "WINNER" },
+    { id: 2, year: "2026", org: "Canadian Selah Music Awards", title: "Canadian Collaboration Song of the Year", project: "Solid Rock Medley (feat. Kimberly Adé)", status: "Nominee" },
+    { id: 3, year: "2026", org: "Canadian Selah Music Awards", title: "Gospel Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
+    { id: 4, year: "2026", org: "Canadian Selah Music Awards", title: "Caribbean Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
+    { id: 5, year: "2026", org: "Canadian Selah Music Awards", title: "Canadian Gospel Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
+    { id: 6, year: "2026", org: "Canadian Selah Music Awards", title: "Canadian Male Artist of the Year", project: "Michael Manhertz", status: "Nominee" },
+    { id: 7, year: "2025", org: "Canadian Selah Music Awards", title: "Collaboration Song of the Year", project: "Ready to Receive", status: "WINNER" },
+    { id: 8, year: "2023", org: "Covenant Awards", title: "Gospel Artist & Song of the Year", project: "Michael Manhertz / Fresh Anointing", status: "Nominee" },
+    { id: 9, year: "2022", org: "Covenant Awards", title: "Musical Collaboration of the Year", project: "Jesus (with Kimberly Adé)", status: "Nominee" },
   ];
 
   const news = [
@@ -61,11 +64,11 @@ const App = () => {
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 border-b border-white/5 ${isScrolled ? 'bg-[#0a0908]/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo (Using mix-blend-screen to remove black JPEG background) */}
+          {/* Logo (Using mix-blend-screen in case the PNG has dark elements) */}
           <div className="flex-1 flex items-center">
             <a href="#" className="flex items-center">
               <img 
-                src="./logo.jpeg" 
+                src="./logo.png" 
                 alt="Michael Manhertz Music Logo" 
                 className="h-12 md:h-16 w-auto object-contain mix-blend-screen opacity-90 hover:opacity-100 transition-opacity" 
               />
@@ -111,12 +114,12 @@ const App = () => {
 
       {/* Editorial Hero Section */}
       <section className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-black">
-        {/* Editorial Background Image */}
+        {/* Editorial Background Image (object-top prevents face from cropping on mobile) */}
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="./hero.jpeg" 
             alt="Michael Manhertz Live" 
-            className="w-full h-full object-cover object-center opacity-70"
+            className="w-full h-full object-cover object-top md:object-center opacity-70"
           />
         </div>
         
@@ -202,7 +205,7 @@ const App = () => {
           <div className="lg:col-span-7">
             <p className="text-[#d1b06b] text-xs font-bold tracking-[0.2em] uppercase mb-6 flex items-center">
               <span className="w-8 h-[1px] bg-[#d1b06b] mr-4"></span>
-              CSMA Song of the Year
+              Canadian Gospel Song of the Year
             </p>
             <h2 className="text-5xl md:text-7xl font-serif leading-[0.9] tracking-tight mb-8">
               SOLID ROCK<br/><i className="text-[#a39b8b]">MEDLEY</i>
@@ -215,14 +218,14 @@ const App = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <button className="flex items-center space-x-2 bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors">
+              <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="flex items-center space-x-2 bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors">
                 <Music size={16} />
                 <span>Listen Everywhere</span>
-              </button>
-              <button className="flex items-center space-x-2 border border-white/20 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:border-[#d1b06b] hover:text-[#d1b06b] transition-colors">
+              </a>
+              <a href="https://www.youtube.com/c/michaelmanhertzmusic" target="_blank" rel="noreferrer" className="flex items-center space-x-2 border border-white/20 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:border-[#d1b06b] hover:text-[#d1b06b] transition-colors">
                 <Play size={16} />
                 <span>Watch Video</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -233,7 +236,7 @@ const App = () => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
-              <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-2">LIVE <i className="text-[#d1b06b]">&</i> MINISTRY</h2>
+              <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-2">MINISTRY <i className="text-[#d1b06b]">&</i> EVENTS</h2>
               <p className="text-sm text-[#a39b8b] uppercase tracking-[0.2em]">Upcoming Dates & Appearances</p>
             </div>
             <a href="mailto:bookings@michaelmanhertzmusic.com" className="text-xs font-bold text-[#d1b06b] uppercase tracking-[0.2em] border-b border-[#d1b06b] pb-1 hover:text-[#ebd5a6] transition-colors">
@@ -288,7 +291,7 @@ const App = () => {
               </div>
               <div>
                 <h3 className="text-lg font-serif mb-1 group-hover:text-[#d1b06b] transition-colors">{item.title}</h3>
-                <p className="text-xs text-[#a39b8b] uppercase tracking-widest">{item.type}</p>
+                <p className="text-xs text-[#a39b8b] uppercase tracking-widest leading-relaxed">{item.type}</p>
               </div>
             </div>
           ))}
@@ -301,31 +304,31 @@ const App = () => {
               </div>
               <div>
                 <h3 className="text-lg font-serif mb-1 group-hover:text-[#d1b06b] transition-colors">{item.title}</h3>
-                <p className="text-xs text-[#a39b8b] uppercase tracking-widest">{item.artist} • <span className="text-[#d1b06b]/80">{item.note}</span></p>
+                <p className="text-xs text-[#a39b8b] uppercase tracking-widest leading-relaxed">{item.artist} <br className="md:hidden"/> <span className="text-[#d1b06b]/80">• {item.note}</span></p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Editorial Photo Gallery (4 Images Asymmetric layout) */}
+      {/* Editorial Photo Gallery (Responsive Heights) */}
       <section className="py-24 bg-[#0d0c0a] border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[250px] md:auto-rows-[350px]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
             {/* Image 1: Landscape (Wide) */}
-            <div className="md:col-span-8 overflow-hidden group">
+            <div className="md:col-span-8 h-64 md:h-[350px] overflow-hidden group">
               <img src="./landscape-1.jpeg" alt="Michael Manhertz Performance" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
             </div>
             {/* Image 2: Long (Tall portrait) */}
-            <div className="md:col-span-4 md:row-span-2 overflow-hidden group">
+            <div className="md:col-span-4 h-[400px] md:h-[732px] md:row-span-2 overflow-hidden group">
               <img src="./long-1.jpeg" alt="Michael Manhertz Portrait" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
             </div>
             {/* Image 3: Long (Tall portrait on left for row 2) */}
-            <div className="md:col-span-4 overflow-hidden group hidden md:block">
+            <div className="md:col-span-4 h-[400px] md:h-[350px] overflow-hidden group">
               <img src="./long-2.jpeg" alt="Michael Manhertz Studio" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 object-top transition-all duration-700" />
             </div>
             {/* Image 4: Landscape (Wide bottom right) */}
-            <div className="md:col-span-4 overflow-hidden group hidden md:block">
+            <div className="md:col-span-4 h-64 md:h-[350px] overflow-hidden group">
               <img src="./landscape-2.jpeg" alt="Michael Manhertz Ministry" className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" />
             </div>
           </div>
@@ -357,10 +360,10 @@ const App = () => {
             </h2>
             <div className="space-y-6">
               {awards.map((award) => (
-                <div key={award.id} className="border-l-2 border-[#d1b06b]/30 pl-6 pb-2">
+                <div key={award.id} className="border-l-2 border-[#d1b06b]/30 pl-4 md:pl-6 pb-2">
                   <p className="text-[#d1b06b] text-xs font-bold tracking-widest uppercase mb-1">{award.year} {award.org}</p>
-                  <h4 className="text-lg font-serif text-[#f4f1eb]">{award.title}</h4>
-                  <p className="text-[11px] text-[#a39b8b] tracking-wider uppercase mt-1">{award.project} • <span className={award.status === 'WINNER' ? 'text-white font-bold' : ''}>{award.status}</span></p>
+                  <h4 className="text-base md:text-lg font-serif text-[#f4f1eb] leading-snug">{award.title}</h4>
+                  <p className="text-[10px] md:text-[11px] text-[#a39b8b] tracking-wider uppercase mt-2">{award.project} • <span className={award.status === 'WINNER' ? 'text-white font-bold' : ''}>{award.status}</span></p>
                 </div>
               ))}
             </div>
@@ -374,7 +377,7 @@ const App = () => {
             </h2>
             <div className="space-y-6">
               {news.map((item) => (
-                <div key={item.id} className="border-l-2 border-white/10 hover:border-[#d1b06b]/50 transition-colors pl-6 pb-2">
+                <div key={item.id} className="border-l-2 border-white/10 hover:border-[#d1b06b]/50 transition-colors pl-4 md:pl-6 pb-2">
                   <p className="text-[#a39b8b] text-[10px] font-bold tracking-widest uppercase mb-1">{item.date} • {item.publication}</p>
                   <h4 className="text-base font-serif text-[#f4f1eb] leading-snug">{item.title}</h4>
                 </div>
@@ -400,7 +403,7 @@ const App = () => {
       <footer className="bg-[#050404] pt-24 pb-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
-            <img src="./logo.jpeg" alt="Michael Manhertz Logo" className="h-16 w-auto object-contain mix-blend-screen opacity-50 mb-6" />
+            <img src="./logo.png" alt="Michael Manhertz Logo" className="h-16 w-auto object-contain mix-blend-screen opacity-50 mb-6" />
             <p className="text-xs text-[#a39b8b] leading-loose max-w-sm">
               Award-winning Toronto gospel artist, worship leader, vocal arranger and artist-development coach. Bridging Caribbean-rooted praise, contemporary worship and traditional Black gospel.
             </p>
@@ -414,16 +417,26 @@ const App = () => {
           </div>
           <div>
             <h4 className="text-[#d1b06b] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Connect</h4>
-            <div className="flex space-x-6">
-              {/* Custom SVGs for Social Icons */}
-              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <div className="flex space-x-5">
+              
+              {/* Spotify Icon */}
+              <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Spotify">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.84.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.84.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.239.54-.959.72-1.56.3z"/></svg>
               </a>
-              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="YouTube">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+
+              {/* Apple Music Icon */}
+              <a href="https://music.apple.com/ca/artist/michael-manhertz/868153964" target="_blank" rel="noreferrer" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Apple Music">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.328 14.88c-1.378 1.156-2.581.42-3.08.174-.462-.224-1.222-.445-1.956-.034-.905.508-1.488 1.627-1.488 2.68 0 .285.029.566.082.843C6.732 19.347 5 17.514 5 15.228 5 12.015 7.6 9.4 10.824 9.4c1.879 0 3.518.889 4.542 2.277-2.656.762-3.486 3.65-2.227 5.733a4.708 4.708 0 0 0 2.189 1.47z"/></svg>
               </a>
-              <a href="#" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+
+              {/* Instagram Icon */}
+              <a href="https://www.instagram.com/michaelmanhertzmusic/" target="_blank" rel="noreferrer" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              
+              {/* YouTube Icon */}
+              <a href="https://www.youtube.com/c/michaelmanhertzmusic" target="_blank" rel="noreferrer" className="text-[#a39b8b] hover:text-[#d1b06b] transition-colors" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
               </a>
             </div>
           </div>

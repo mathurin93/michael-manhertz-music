@@ -141,25 +141,35 @@ const App = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908]/60 via-transparent to-[#0a0908] pointer-events-none"></div>
 
         {/* Big Typography with Animated Banner */}
-        <div className="relative z-10 flex flex-col items-center mt-20 px-4 w-full">
+        <div className="relative z-10 flex flex-col items-center mt-20 w-full">
           
-          {/* Animated "Winner" Banner replacing the static badge */}
-          <div className="mb-6 md:mb-8 border-y border-[#d1b06b]/20 py-2 w-full max-w-2xl overflow-hidden backdrop-blur-sm bg-black/20">
+          {/* Animated "Winner" Banner - Full Width Edge-to-Edge */}
+          <div className="mb-6 md:mb-8 border-y border-[#d1b06b]/20 py-2 w-full overflow-hidden backdrop-blur-sm bg-black/20 flex">
             <div className="animate-scroll">
-              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase">
+              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase whitespace-nowrap">
                 <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span>•</span>
+                <span className="text-white">•</span>
                 <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
+                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
+                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
               </div>
-              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase">
+              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase whitespace-nowrap">
                 <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span>•</span>
+                <span className="text-white">•</span>
                 <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
+                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
+                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
+                <span className="text-white">•</span>
               </div>
             </div>
           </div>
 
-          <h1 className="text-[3.5rem] md:text-[9rem] leading-[0.9] md:leading-[0.85] font-serif text-[#f4f1eb] tracking-tighter text-center drop-shadow-2xl">
+          <h1 className="text-[3.5rem] md:text-[9rem] leading-[0.9] md:leading-[0.85] font-serif text-[#f4f1eb] tracking-tighter text-center drop-shadow-2xl px-4">
             MICHAEL<br/>MANHERTZ
           </h1>
           
@@ -167,7 +177,7 @@ const App = () => {
             Worship that carries testimony, culture and conviction.
           </p>
 
-          <div className="mt-10 md:mt-12 flex items-center">
+          <div className="mt-10 md:mt-12 flex items-center px-4">
             <a href="mailto:bookings@michaelmanhertzmusic.com" className="flex items-center space-x-3 border border-[#d1b06b]/50 text-[#d1b06b] px-8 md:px-10 py-4 font-semibold uppercase tracking-[0.2em] text-xs hover:bg-[#d1b06b] hover:text-[#0a0908] transition-all bg-[#0a0908]/40 backdrop-blur-sm">
               <span>Book For Ministry</span>
               <ArrowUpRight size={16} />

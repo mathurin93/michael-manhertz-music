@@ -60,18 +60,6 @@ const App = () => {
 
   return (
     <div className="bg-[#0a0908] text-[#f4f1eb] min-h-screen font-sans selection:bg-[#d1b06b] selection:text-black">
-      {/* Inline styles for the marquee animation */}
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-          display: flex;
-          width: max-content;
-          animation: scroll 30s linear infinite;
-        }
-      `}</style>
       
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 border-b border-white/5 ${isScrolled ? 'bg-[#0a0908]/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
@@ -125,9 +113,9 @@ const App = () => {
       )}
 
       {/* Editorial Hero Section */}
-      <section className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-black pt-20 md:pt-0">
+      <section className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-black">
         
-        {/* Editorial Background Image - Focused on face for mobile */}
+        {/* Editorial Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="./hero.jpeg" 
@@ -140,36 +128,34 @@ const App = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0908_100%)] opacity-80 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0908]/60 via-transparent to-[#0a0908] pointer-events-none"></div>
 
-        {/* Big Typography with Animated Banner */}
-        <div className="relative z-10 flex flex-col items-center mt-20 w-full">
+        {/* Vertical Editorial Text - LEFT SIDE */}
+        <div className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center opacity-80 pointer-events-none">
+          <div className="w-[1px] h-12 bg-[#d1b06b] mb-6 opacity-50"></div>
+          <p className="text-[10px] font-normal tracking-[0.3em] uppercase whitespace-nowrap" style={{ writingMode: 'vertical-rl' }}>
+            <span className="text-[#d1b06b]">WINNER</span> <span className="text-[#a39b8b]">•</span> <span className="text-white">2026</span> <span className="text-[#d1b06b]">CANADIAN</span> <span className="text-white">GOSPEL</span> <span className="text-[#d1b06b]">SONG OF THE</span> <span className="text-white">YEAR</span>
+          </p>
+          <div className="w-[1px] h-12 bg-[#d1b06b] mt-6 opacity-50"></div>
+        </div>
+
+        {/* Big Typography Cleaned Up */}
+        <div className="relative z-10 flex flex-col items-center mt-20 px-4 w-full">
           
-          {/* Animated "Winner" Banner - Full Width Edge-to-Edge */}
-          <div className="mb-6 md:mb-8 border-y border-[#d1b06b]/20 py-2 w-full overflow-hidden backdrop-blur-sm bg-black/20 flex">
-            <div className="animate-scroll">
-              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase whitespace-nowrap">
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-              </div>
-              <div className="flex space-x-4 items-center px-4 text-[#d1b06b] text-[8px] md:text-[10px] font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase whitespace-nowrap">
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-                <span>Winner • <span className="text-white">2026</span> Canadian <span className="text-white">Gospel</span> Song of the <span className="text-white">Year</span></span>
-                <span className="text-white">•</span>
-              </div>
-            </div>
+          {/* Mobile Only: Horizontal Winner Badge (Because vertical side-text doesn't fit on narrow mobile screens) */}
+          <div className="md:hidden flex items-center space-x-3 mb-6">
+             <p className="text-[8px] font-normal tracking-[0.2em] uppercase text-center drop-shadow-md">
+                <span className="text-[#d1b06b]">WINNER</span> <span className="text-[#a39b8b]">•</span> <span className="text-white">2026</span> <span className="text-[#d1b06b]">CANADIAN</span> <span className="text-white">GOSPEL</span> <span className="text-[#d1b06b]">SONG OF THE</span> <span className="text-white">YEAR</span>
+             </p>
           </div>
 
-          <h1 className="text-[3.5rem] md:text-[9rem] leading-[0.9] md:leading-[0.85] font-serif text-[#f4f1eb] tracking-tighter text-center drop-shadow-2xl px-4">
+          {/* Desktop Only: Floating 'New Single' indicator (Exactly like Kirk Franklin layout) */}
+          <div className="hidden md:flex items-center space-x-3 mb-8">
+            <span className="w-1.5 h-1.5 bg-[#d1b06b] rounded-full"></span>
+            <p className="text-[#d1b06b] text-[10px] font-bold tracking-[0.3em] uppercase drop-shadow-md">
+              New Single • "Solid Rock Medley" • Out Now
+            </p>
+          </div>
+
+          <h1 className="text-[3.5rem] md:text-[9rem] leading-[0.9] md:leading-[0.85] font-serif text-[#f4f1eb] tracking-tighter text-center drop-shadow-2xl">
             MICHAEL<br/>MANHERTZ
           </h1>
           
@@ -177,7 +163,7 @@ const App = () => {
             Worship that carries testimony, culture and conviction.
           </p>
 
-          <div className="mt-10 md:mt-12 flex items-center px-4">
+          <div className="mt-10 md:mt-12 flex items-center">
             <a href="mailto:bookings@michaelmanhertzmusic.com" className="flex items-center space-x-3 border border-[#d1b06b]/50 text-[#d1b06b] px-8 md:px-10 py-4 font-semibold uppercase tracking-[0.2em] text-xs hover:bg-[#d1b06b] hover:text-[#0a0908] transition-all bg-[#0a0908]/40 backdrop-blur-sm">
               <span>Book For Ministry</span>
               <ArrowUpRight size={16} />
@@ -185,7 +171,7 @@ const App = () => {
           </div>
         </div>
 
-        {/* Stats / Credibility strip at bottom */}
+        {/* Stats / Credibility strip at bottom (Hidden on small mobile, visible on tablets+) */}
         <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 justify-between items-end z-20 hidden md:flex">
           <div>
             <p className="text-[10px] tracking-[0.2em] text-[#a39b8b] uppercase mb-1">Latest Honour</p>
@@ -198,110 +184,88 @@ const App = () => {
         </div>
       </section>
 
-      {/* Marquee Scroller */}
-      <div className="border-y border-white/5 py-4 bg-[#0d0c0a] overflow-hidden relative">
-        <div className="animate-scroll">
-          <div className="flex space-x-12 items-center text-[#f4f1eb] font-serif text-2xl md:text-3xl italic opacity-80 px-6">
-            <span>Solid Rock Medley</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>The Unashamed Project</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Fresh Anointing</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Holy</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Deeper</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Take It All</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-          </div>
-          <div className="flex space-x-12 items-center text-[#f4f1eb] font-serif text-2xl md:text-3xl italic opacity-80 px-6">
-            <span>Solid Rock Medley</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>The Unashamed Project</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Fresh Anointing</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Holy</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Deeper</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-            <span>Take It All</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Story / Latest Single Section (Kirk Franklin Exact Layout) */}
-      <section id="story" className="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-white/5">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      {/* Story / Latest Single Section - Kirk Franklin Layout Match */}
+      <section id="story" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           
-          {/* Left: Album Art & Caption */}
-          <div className="w-full max-w-md mx-auto lg:max-w-none">
-            <p className="text-[#d1b06b] text-[10px] font-bold tracking-[0.3em] uppercase mb-6 text-center lg:text-left flex items-center justify-center lg:justify-start">
-              <span className="hidden lg:block w-12 h-[1px] bg-[#d1b06b]/50 mr-4"></span>
-              THE NEW SINGLE
-              <span className="hidden lg:block w-12 h-[1px] bg-[#d1b06b]/50 ml-4"></span>
-            </p>
-            <div className="relative border border-[#d1b06b]/20 p-2 md:p-4 mb-6">
-              <div className="relative aspect-square overflow-hidden shadow-2xl">
+          {/* Left: Album Art & Eyebrows */}
+          <div className="lg:col-span-5">
+            {/* The New Single - Eyebrow */}
+            <div className="flex items-center mb-8">
+              <p className="text-[#a39b8b] text-[10px] font-bold tracking-[0.3em] uppercase">
+                THE NEW SINGLE
+              </p>
+              <div className="ml-6 flex-1 h-[1px] bg-[#d1b06b]/20"></div>
+            </div>
+
+            {/* Album Art Frame */}
+            <div className="relative p-1 border border-[#d1b06b]/20 mb-6 group">
+              <div className="absolute -inset-4 bg-[#d1b06b]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="relative aspect-square overflow-hidden bg-black">
                 <img 
                   src="./single artwork.jpeg" 
                   alt="Solid Rock Medley Artwork" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                 />
               </div>
             </div>
-            <div className="border-l border-[#d1b06b] pl-4">
-              <p className="text-[11px] text-[#a39b8b] tracking-wide font-serif italic leading-relaxed">
-                Released 2025 on Michael Manhertz Music. Produced by Dylan Smith.<br/>
-                Winner: 2026 Canadian Gospel Song of the Year.
+            
+            {/* Metadata with Gold Accent Line */}
+            <div className="pl-4 border-l border-[#d1b06b] py-1">
+              <p className="text-[11px] text-[#a39b8b] tracking-[0.05em] leading-relaxed font-serif italic">
+                Released 2025 / Produced by Dylan Smith. A joyful, Caribbean-rooted Sunday-morning medley created in honour of Michael’s late father.
               </p>
             </div>
           </div>
           
-          {/* Right: The Story, Spotify, and Links */}
-          <div className="flex flex-col">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.9] tracking-tighter mb-8 uppercase text-center lg:text-left">
-              JESUS IS THE <br className="hidden md:block"/><i className="text-[#d1b06b]">Solid Rock</i> ON<br className="hidden md:block"/> WHICH WE STAND.
+          {/* Right: The Story, Typography & Player */}
+          <div className="lg:col-span-7 flex flex-col justify-center pt-4 md:pt-12">
+            
+            {/* Massive Serif Headline (matching "HE IS Able...") */}
+            <h2 className="text-5xl md:text-[5.5rem] leading-[0.9] tracking-tight font-serif text-[#f4f1eb] uppercase mb-10 md:mb-12">
+              JESUS IS THE <br/>
+              <span className="text-[#d1b06b] italic lowercase font-serif">Solid Rock</span><br/>
+              ON WHICH <br/>WE STAND.
             </h2>
             
-            {/* Drop Cap Paragraph */}
-            <div className="mb-10 text-center lg:text-left">
-              <span className="float-none lg:float-left text-[#d1b06b] text-6xl md:text-7xl font-serif font-bold leading-[0.8] pr-2 block lg:inline mb-2 lg:mb-0">M</span>
-              <p className="text-sm md:text-base text-[#f4f1eb] font-serif leading-relaxed opacity-90 inline">
-                ichael on the medley: "This is a joyful, Caribbean-rooted Sunday-morning medley created in honour of my late father and the church songs that formed my faith."
-              </p>
-              <p className="text-sm md:text-base text-[#f4f1eb] font-serif leading-relaxed opacity-90 mt-4 clear-none">
-                The recording brings together traditional hymns and contemporary gospel energy while declaring that Jesus remains the believer’s sure foundation, no matter the season.
+            {/* Drop Cap Paragraph Style */}
+            <div className="mb-12 relative z-10">
+              <p className="text-sm md:text-base text-[#a39b8b] leading-loose font-serif">
+                <span className="float-left text-6xl md:text-7xl font-serif text-[#d1b06b] leading-[0.7] pr-3 pt-2 font-black">
+                  M
+                </span>
+                ichael Manhertz is an award-winning Toronto gospel artist, worship leader, and artist-development coach. Raised in a Jamaican-Canadian environment, his sound blends Caribbean gospel, contemporary Christian music, and traditional Black gospel. His CSMA-winning recording brings together traditional hymns and contemporary energy while declaring that Jesus remains the believer’s sure foundation.
               </p>
             </div>
 
-            {/* Spotify Embed */}
-            <div className="mb-8 w-full">
+            {/* Spotify Player Embed */}
+            <div className="w-full mb-8 bg-[#161412] p-1 rounded-2xl border border-white/5">
               <iframe 
-                src="https://open.spotify.com/embed/track/2585N0F8gBIf2zZkP94tD8?utm_source=generator&theme=0" 
+                style={{ borderRadius: '12px' }} 
+                src="https://open.spotify.com/embed/track/2Z1zJ5g1q2oZ0p3o0u7m1v?utm_source=generator&theme=0" 
                 width="100%" 
                 height="152" 
                 frameBorder="0" 
-                allowFullScreen="" 
+                allowFullScreen={true} 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy"
-                className="rounded-xl border border-white/10"
+                title="Solid Rock Medley Spotify Player"
               ></iframe>
             </div>
             
             {/* Platform Links Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4">
-              <a href="https://music.apple.com/ca/artist/michael-manhertz/868153964" target="_blank" rel="noreferrer" className="border border-white/20 text-[#a39b8b] text-[10px] font-bold uppercase tracking-[0.2em] py-4 text-center hover:border-white hover:text-white transition-colors">
-                APPLE MUSIC
-              </a>
-              <a href="https://www.youtube.com/c/michaelmanhertzmusic" target="_blank" rel="noreferrer" className="border border-white/20 text-[#a39b8b] text-[10px] font-bold uppercase tracking-[0.2em] py-4 text-center hover:border-white hover:text-white transition-colors">
-                YOUTUBE
-              </a>
-              <a href="#" className="border border-white/20 text-[#a39b8b] text-[10px] font-bold uppercase tracking-[0.2em] py-4 text-center hover:border-white hover:text-white transition-colors">
-                TIDAL
-              </a>
-              <a href="#" className="border border-white/20 text-[#a39b8b] text-[10px] font-bold uppercase tracking-[0.2em] py-4 text-center hover:border-white hover:text-white transition-colors">
-                AMAZON
-              </a>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <a href="https://music.apple.com/ca/artist/michael-manhertz/868153964" target="_blank" rel="noreferrer" className="border border-white/10 hover:border-[#d1b06b] text-[#a39b8b] hover:text-[#d1b06b] text-[9px] font-bold uppercase tracking-[0.2em] py-4 text-center transition-all bg-[#0a0908]">APPLE MUSIC</a>
+              <a href="https://www.youtube.com/c/michaelmanhertzmusic" target="_blank" rel="noreferrer" className="border border-white/10 hover:border-[#d1b06b] text-[#a39b8b] hover:text-[#d1b06b] text-[9px] font-bold uppercase tracking-[0.2em] py-4 text-center transition-all bg-[#0a0908]">YOUTUBE</a>
+              <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="border border-white/10 hover:border-[#d1b06b] text-[#a39b8b] hover:text-[#d1b06b] text-[9px] font-bold uppercase tracking-[0.2em] py-4 text-center transition-all bg-[#0a0908]">SPOTIFY</a>
+              <a href="#" className="border border-white/10 hover:border-[#d1b06b] text-[#a39b8b] hover:text-[#d1b06b] text-[9px] font-bold uppercase tracking-[0.2em] py-4 text-center transition-all bg-[#0a0908]">AMAZON MUSIC</a>
             </div>
             
-            {/* Call to Action Row */}
-            <div className="flex justify-center lg:justify-start">
-              <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors flex items-center justify-center w-full md:w-auto">
-                ALL PLATFORMS →
-              </a>
-            </div>
-
+            {/* Primary Action Button */}
+            <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="inline-block bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors w-full md:w-auto text-center">
+              ALL PLATFORMS →
+            </a>
+            
           </div>
         </div>
       </section>

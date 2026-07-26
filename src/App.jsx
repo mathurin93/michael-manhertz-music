@@ -60,6 +60,18 @@ const App = () => {
 
   return (
     <div className="bg-[#0a0908] text-[#f4f1eb] min-h-screen font-sans selection:bg-[#d1b06b] selection:text-black">
+      {/* Inline styles for the marquee animation */}
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          display: flex;
+          width: max-content;
+          animation: scroll 30s linear infinite;
+        }
+      `}</style>
       
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-500 border-b border-white/5 ${isScrolled ? 'bg-[#0a0908]/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
@@ -115,7 +127,7 @@ const App = () => {
       {/* Editorial Hero Section */}
       <section className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-black">
         
-        {/* Editorial Background Image */}
+        {/* Editorial Background Image - Focused on face for mobile */}
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="./hero.jpeg" 
@@ -137,7 +149,7 @@ const App = () => {
           <div className="w-[1px] h-12 bg-[#d1b06b] mt-6 opacity-50"></div>
         </div>
 
-        {/* Big Typography Cleaned Up */}
+        {/* Big Typography Cleaned Up - REDUCED MOBILE SIZE */}
         <div className="relative z-10 flex flex-col items-center mt-20 px-4 w-full">
           
           {/* Mobile Only: Horizontal Winner Badge (Because vertical side-text doesn't fit on narrow mobile screens) */}
@@ -183,6 +195,29 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Working CSS Animated Marquee Scroller */}
+      <div className="border-y border-white/5 py-4 bg-[#0d0c0a] overflow-hidden relative">
+        <div className="animate-scroll">
+          {/* We duplicate the span blocks so it loops infinitely without gaps */}
+          <div className="flex space-x-12 items-center text-[#f4f1eb] font-serif text-2xl md:text-3xl italic opacity-80 px-6">
+            <span>Solid Rock Medley</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>The Unashamed Project</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Fresh Anointing</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Holy</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Deeper</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Take It All</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          </div>
+          <div className="flex space-x-12 items-center text-[#f4f1eb] font-serif text-2xl md:text-3xl italic opacity-80 px-6">
+            <span>Solid Rock Medley</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>The Unashamed Project</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Fresh Anointing</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Holy</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Deeper</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+            <span>Take It All</span><span className="text-[#d1b06b] text-sm not-italic">•</span>
+          </div>
+        </div>
+      </div>
 
       {/* Story / Latest Single Section - Kirk Franklin Layout Match */}
       <section id="story" className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
@@ -242,14 +277,14 @@ const App = () => {
             <div className="w-full mb-8 bg-[#161412] p-1 rounded-2xl border border-white/5">
               <iframe 
                 style={{ borderRadius: '12px' }} 
-                src="https://open.spotify.com/embed/track/2Z1zJ5g1q2oZ0p3o0u7m1v?utm_source=generator&theme=0" 
+                src="https://open.spotify.com/embed/artist/47g94YuzQ1YZ6CEeRc2cU2?utm_source=generator&theme=0" 
                 width="100%" 
                 height="152" 
                 frameBorder="0" 
                 allowFullScreen={true} 
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                 loading="lazy"
-                title="Solid Rock Medley Spotify Player"
+                title="Michael Manhertz Spotify Player"
               ></iframe>
             </div>
             

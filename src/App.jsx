@@ -297,9 +297,11 @@ const App = () => {
             </div>
             
             {/* Primary Action Button */}
-            <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="inline-block bg-[#d1b06b] text-[#0a0908] px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors w-full md:w-auto text-center">
-              ALL PLATFORMS →
-            </a>
+            <div className="flex justify-start mt-2">
+              <a href="https://open.spotify.com/artist/47g94YuzQ1YZ6CEeRc2cU2" target="_blank" rel="noreferrer" className="inline-block bg-[#d1b06b] text-[#0a0908] px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors text-center">
+                ALL PLATFORMS →
+              </a>
+            </div>
             
           </div>
         </div>

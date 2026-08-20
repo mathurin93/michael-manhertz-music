@@ -15,14 +15,32 @@ const App = () => {
   }, []);
 
   const tourDates = [
-    { id: 1, city: "Toronto, ON", venue: "Worship Clinic", date: "July 18, 2026", time: "TBA" },
+    {
+      id: 1,
+      city: "Revival Time Tabernacle",
+      venue: "Kevin Adams & VOP + Michael Manhertz with Next Gen Choir",
+      date: "Friday, September 25, 2026",
+      link: "https://www.eventbrite.com/e/kevin-adams-vop-michael-manhertz-with-next-gen-choir-live-in-concert-tickets-1996359819962",
+      cta: "Tickets & Event Details",
+    },
     {
       id: 2,
-      city: "Brampton, ON",
-      venue: "Unshakeable Praise Concert",
-      date: "September 26, 2026",
-      time: "TBA",
+      city: "COGSK Brampton",
+      venue: "Unshakeable Praise",
+      date: "Saturday, September 26, 2026",
       image: "./unshakable.jpeg",
+    },
+    {
+      id: 3,
+      city: "Toronto, ON",
+      venue: "Witness Live Recording",
+      date: "November 28, 2026",
+    },
+    {
+      id: 4,
+      city: "North Park Worship Centre",
+      venue: "Crossover Service",
+      date: "December 31, 2026",
     },
   ];
 
@@ -114,9 +132,12 @@ const App = () => {
           <div className="hidden md:flex flex-1 justify-end items-center space-x-8">
             <a href="#news" className="text-xs font-semibold tracking-[0.2em] uppercase text-[#a39b8b] hover:text-[#d1b06b] transition-colors">News</a>
             <a href="https://pluggedinapparel.ca/" target="_blank" rel="noreferrer" className="text-xs font-semibold tracking-[0.2em] uppercase text-[#a39b8b] hover:text-[#d1b06b] transition-colors">Merch</a>
-            <button className="bg-[#d1b06b] text-[#0a0908] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors">
+            <a
+              href="mailto:michaelmanhertzmusic@gmail.com?subject=Booking%20Inquiry%20for%20Michael%20Manhertz"
+              className="bg-[#d1b06b] text-[#0a0908] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#ebd5a6] transition-colors"
+            >
               Book Michael
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -135,6 +156,12 @@ const App = () => {
           <a href="#story" onClick={() => setIsMobileMenuOpen(false)}>Story</a>
           <a href="#tour" onClick={() => setIsMobileMenuOpen(false)}>Tour Dates</a>
           <a href="#coaching" onClick={() => setIsMobileMenuOpen(false)}>Coaching</a>
+          <a
+            href="mailto:michaelmanhertzmusic@gmail.com?subject=Booking%20Inquiry%20for%20Michael%20Manhertz"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Book Michael
+          </a>
           <a href="https://pluggedinapparel.ca/" target="_blank" rel="noreferrer" onClick={() => setIsMobileMenuOpen(false)}>Shop Merch</a>
         </div>
       )}
@@ -191,7 +218,7 @@ const App = () => {
           </p>
 
           <div className="mt-10 md:mt-12 flex items-center">
-            <a href="mailto:bookings@michaelmanhertzmusic.com" className="flex items-center space-x-3 border border-[#d1b06b]/50 text-[#d1b06b] px-8 md:px-10 py-4 font-semibold uppercase tracking-[0.2em] text-xs hover:bg-[#d1b06b] hover:text-[#0a0908] transition-all bg-[#0a0908]/40 backdrop-blur-sm">
+            <a href="mailto:michaelmanhertzmusic@gmail.com?subject=Booking%20Inquiry%20for%20Michael%20Manhertz" className="flex items-center space-x-3 border border-[#d1b06b]/50 text-[#d1b06b] px-8 md:px-10 py-4 font-semibold uppercase tracking-[0.2em] text-xs hover:bg-[#d1b06b] hover:text-[#0a0908] transition-all bg-[#0a0908]/40 backdrop-blur-sm">
               <span>Book For Ministry</span>
               <ArrowUpRight size={16} />
             </a>
@@ -330,7 +357,7 @@ const App = () => {
               <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-2">MINISTRY <i className="text-[#d1b06b]">& EVENTS</i></h2>
               <p className="text-sm text-[#a39b8b] uppercase tracking-[0.2em]">Upcoming Dates & Appearances</p>
             </div>
-            <a href="mailto:bookings@michaelmanhertzmusic.com" className="text-xs font-bold text-[#d1b06b] uppercase tracking-[0.2em] border-b border-[#d1b06b] pb-1 hover:text-[#ebd5a6] transition-colors">
+            <a href="mailto:michaelmanhertzmusic@gmail.com?subject=Booking%20Inquiry%20for%20Michael%20Manhertz" className="text-xs font-bold text-[#d1b06b] uppercase tracking-[0.2em] border-b border-[#d1b06b] pb-1 hover:text-[#ebd5a6] transition-colors">
               Invite Michael →
             </a>
           </div>
@@ -370,6 +397,18 @@ const App = () => {
                       <p className="text-xs md:text-sm text-[#a39b8b] uppercase tracking-widest leading-relaxed">
                         {tour.venue}
                       </p>
+
+                      {tour.link && (
+                        <a
+                          href={tour.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 mt-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#d1b06b] border-b border-[#d1b06b]/60 pb-1 hover:text-[#ebd5a6] hover:border-[#ebd5a6] transition-colors"
+                        >
+                          {tour.cta || "Event Details"}
+                          <ArrowUpRight size={13} />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -569,7 +608,7 @@ const App = () => {
           <div>
             <h4 className="text-[#d1b06b] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Contact & Booking</h4>
             <ul className="space-y-4 text-xs text-[#a39b8b] tracking-wider">
-              <li><a href="mailto:bookings@michaelmanhertzmusic.com" className="hover:text-white transition-colors">bookings@michaelmanhertzmusic.com</a></li>
+              <li><a href="mailto:michaelmanhertzmusic@gmail.com?subject=Booking%20Inquiry%20for%20Michael%20Manhertz" className="hover:text-white transition-colors">michaelmanhertzmusic@gmail.com</a></li>
               <li><a href="mailto:press@michaelmanhertzmusic.com" className="hover:text-white transition-colors">press@michaelmanhertzmusic.com</a></li>
             </ul>
           </div>

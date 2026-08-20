@@ -16,8 +16,14 @@ const App = () => {
 
   const tourDates = [
     { id: 1, city: "Toronto, ON", venue: "Worship Clinic", date: "July 18, 2026", time: "TBA" },
-    { id: 2, city: "Scarborough, ON", venue: "Live Event", date: "September 5, 2026", time: "TBA" },
-    { id: 3, city: "Brampton, ON", venue: "Live Worship", date: "September 26, 2026", time: "TBA" },
+    {
+      id: 2,
+      city: "Brampton, ON",
+      venue: "Unshakeable Praise Concert",
+      date: "September 26, 2026",
+      time: "TBA",
+      image: "./unshakable.jpeg",
+    },
   ];
 
   const discography = [
@@ -56,6 +62,15 @@ const App = () => {
     { id: 2, date: "Oct 7, 2025", publication: "Jamaica Star", title: "Michael Manhertz honours late father with soul-stirring medley" },
     { id: 3, date: "Sep 3, 2024", publication: "Never for Nothing", title: "Fresh Anointing / Bless the Lord Review (9/10)" },
     { id: 4, date: "2024", publication: "CCM Magazine", title: "Morrissa Nicole Celebrates Unity With New Single" },
+  ];
+
+  const awardImages = [
+    "./award-1.jpeg",
+    "./award-2.jpeg",
+    "./award-3.jpeg",
+    "./award-4.jpeg",
+    "./award-5.jpeg",
+    "./award-6.jpeg",
   ];
 
   return (
@@ -320,15 +335,43 @@ const App = () => {
             </a>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-4">
             {tourDates.map((tour) => (
-              <div key={tour.id} className="group border-b border-white/10 hover:border-[#d1b06b]/50 transition-colors py-6 md:py-8 flex flex-col md:flex-row justify-between items-center md:items-center gap-2 md:gap-6 cursor-pointer text-center md:text-left">
-                <div className="flex-1">
-                  <p className="text-[#d1b06b] text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-1 md:mb-2">{tour.date}</p>
-                  <h3 className="text-xl md:text-2xl font-serif text-[#f4f1eb] group-hover:text-[#d1b06b] transition-colors">{tour.city}</h3>
-                </div>
-                <div className="flex-1 md:text-right">
-                  <p className="text-xs md:text-sm text-[#a39b8b] uppercase tracking-widest">{tour.venue}</p>
+              <div
+                key={tour.id}
+                className={`group border border-white/10 hover:border-[#d1b06b]/50 transition-all duration-300 ${
+                  tour.image ? "bg-[#11100e]" : "border-x-0 border-t-0"
+                }`}
+              >
+                <div className={`flex flex-col md:flex-row items-stretch ${tour.image ? "" : "py-6 md:py-8"}`}>
+                  {tour.image && (
+                    <div className="w-full md:w-72 h-52 md:h-auto min-h-[220px] overflow-hidden shrink-0">
+                      <img
+                        src={tour.image}
+                        alt={`${tour.venue} event`}
+                        className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-700"
+                      />
+                    </div>
+                  )}
+
+                  <div className={`flex-1 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 text-center md:text-left ${
+                    tour.image ? "p-6 md:p-8" : ""
+                  }`}>
+                    <div className="flex-1">
+                      <p className="text-[#d1b06b] text-xs md:text-sm font-semibold tracking-[0.2em] uppercase mb-2">
+                        {tour.date}
+                      </p>
+                      <h3 className="text-xl md:text-2xl font-serif text-[#f4f1eb] group-hover:text-[#d1b06b] transition-colors">
+                        {tour.city}
+                      </h3>
+                    </div>
+
+                    <div className="flex-1 md:text-right">
+                      <p className="text-xs md:text-sm text-[#a39b8b] uppercase tracking-widest leading-relaxed">
+                        {tour.venue}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -414,13 +457,55 @@ const App = () => {
         <p className="text-[#a39b8b] text-sm md:text-base max-w-3xl mx-auto leading-relaxed mb-10 px-4">
           Michael Manhertz serves as an artist-development coach, helping Christian artists, worship leaders, and creative teams move from uncertainty to a clear and sustainable plan. Gain practical guidance in vocal development, performance, release strategy, and team building.
         </p>
-        <button className="border border-[#d1b06b] text-[#d1b06b] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#d1b06b] hover:text-[#0a0908] transition-colors">
-          Book A Coaching Call
-        </button>
+        <a
+          href="https://christianmusicmentor.com/michael"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center gap-2 border border-[#d1b06b] text-[#d1b06b] px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#d1b06b] hover:text-[#0a0908] transition-colors"
+        >
+          Book Vocal Coaching
+          <ArrowUpRight size={15} />
+        </a>
       </section>
 
       {/* Awards & Press */}
       <section id="news" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="mb-20">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+            <div>
+              <p className="text-[#d1b06b] text-[10px] font-bold tracking-[0.3em] uppercase mb-3">
+                Award Highlights
+              </p>
+              <h2 className="text-4xl md:text-6xl font-serif tracking-tight">
+                MOMENTS OF <i className="text-[#d1b06b]">HONOUR</i>
+              </h2>
+            </div>
+            <p className="text-[#a39b8b] text-xs uppercase tracking-[0.2em] max-w-md md:text-right leading-relaxed">
+              Highlights from Michael Manhertz&apos;s recent award season and recognition.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {awardImages.map((image, index) => (
+              <div
+                key={image}
+                className="group relative aspect-[16/10] overflow-hidden border border-white/10 bg-[#11100e]"
+              >
+                <img
+                  src={image}
+                  alt={`Michael Manhertz award highlight ${index + 1}`}
+                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#d1b06b]">
+                    Award Highlight {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
           
           {/* Awards */}
